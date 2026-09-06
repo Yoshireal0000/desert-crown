@@ -1,1 +1,16 @@
-{"$schema":"./node_modules/wrangler/config-schema.json","name":"desert-crown","compatibility_date":"2026-09-05","assets":{"directory":"./dist","not_found_handling":"single-page-application"}}
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "desert-crown",
+  "account_id": "3c5a777f17342364f695b4218643bbde",
+  "compatibility_date": "2026-09-05",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    {
+      "pattern": "desertcrownwear.com",
+      "custom_domain": true
+    }
+  ]
+}
