@@ -18,8 +18,6 @@ const readUser = async (request: Request, env: Env): Promise<AuthUser | null> =>
   const owners = env.OWNER_EMAILS.split(',').map((email) => email.trim().toLowerCase());
   return { email: session.email, role: owners.includes(session.email.toLowerCase()) ? 'owner' : 'customer' };
 };
-const codeFor = () => String(crypto.getRandomValues(new Uint32Array(1))[0] % 1_000_000).padStart(6, '0');
-
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
