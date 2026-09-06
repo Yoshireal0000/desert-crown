@@ -3,10 +3,24 @@
   "name": "desert-crown",
   "account_id": "3c5a777f17342364f695b4218643bbde",
   "compatibility_date": "2026-09-05",
+  "main": "./src/worker.ts",
   "assets": {
+    "binding": "ASSETS",
     "directory": "./dist",
     "not_found_handling": "single-page-application"
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "desert-crown-db",
+      "database_id": "03ee7e38-2140-46a4-82b4-587f32d5c06e",
+      "migrations_dir": "./migrations"
+    }
+  ],
+  "vars": {
+    "OWNER_EMAILS": "yoshireal10@gmail.com"
+  },
+  "observability": { "enabled": true, "head_sampling_rate": 1 },
   "routes": [
     {
       "pattern": "desertcrownwear.com",
