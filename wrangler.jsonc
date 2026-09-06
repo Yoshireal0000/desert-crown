@@ -11,6 +11,10 @@
     {
       "pattern": "desertcrownwear.com",
       "custom_domain": true
+    },
+    {
+      "pattern": "www.desertcrownwear.com",
+      "custom_domain": true
     }
   ]
 }
