@@ -345,6 +345,7 @@ function Product({ add }: { add: (p: P, s: string, q: number) => void }) {
   );
 }
 function Account() {
+  const emailDeliveryAvailable = false;
   const [email, setEmail] = useState(""),
     [code, setCode] = useState(""),
     [notice, setNotice] = useState(""),
@@ -480,8 +481,8 @@ function Account() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
           />
-          <button className="button" onClick={request}>
-            Send verification code <ArrowRight size={16} />
+          <button className="button" onClick={request} disabled={!emailDeliveryAvailable}>
+            Email sign-in unavailable
           </button>
           <div className="code-row">
             <input
@@ -492,13 +493,13 @@ function Account() {
               }
               placeholder="6-digit code"
               inputMode="numeric"
+              disabled={!emailDeliveryAvailable}
             />
-            <button onClick={verify}>Verify</button>
+            <button onClick={verify} disabled={!emailDeliveryAvailable}>Verify</button>
           </div>
           {notice && <p className="notice">{notice}</p>}
           <small>
-            Verification email delivery is being enabled. No marketing emails
-            are sent from this flow.
+            Email sign-in will stay unavailable until a transactional sender is connected. No marketing emails are sent from this flow.
           </small>
         </section>
       )}

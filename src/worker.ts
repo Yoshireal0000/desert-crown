@@ -30,10 +30,7 @@ export default {
         const { email } = await request.json<{ email?: string }>();
         const normalized = email?.trim().toLowerCase();
         if (!normalized || !/^\S+@\S+\.\S+$/.test(normalized)) return json({ error: 'Enter a valid email address.' }, { status: 400 });
-        const code = codeFor();
-        await env.DB.prepare('INSERT INTO verification_codes (email, code_hash, expires_at, attempts, created_at) VALUES (?, ?, ?, 0, ?) ON CONFLICT(email) DO UPDATE SET code_hash = excluded.code_hash, expires_at = excluded.expires_at, attempts = 0, created_at = excluded.created_at').bind(normalized, await hash(code), Date.now() + 10 * 60_000, now()).run();
-        console.log(JSON.stringify({ event: 'verification_requested', email: normalized }));
-        return json({ ok: true, delivery: 'pending_setup', message: 'Email delivery is being configured. Verification will be available once sending is enabled.' });
+        return json({ error: 'Email sign-in is unavailable until a transactional email sender is configured.' }, { status: 503 });
       }
       if (url.pathname === '/api/auth/verify' && request.method === 'POST') {
         const { email, code } = await request.json<{ email?: string; code?: string }>();
